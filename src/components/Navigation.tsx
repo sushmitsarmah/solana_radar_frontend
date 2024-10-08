@@ -10,6 +10,10 @@ import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
 import Image from 'next/image'
 
+import {
+  WalletMultiButton,
+} from "@solana/wallet-adapter-react-ui";
+
 const routes = [
   {
     href: "/",
@@ -39,13 +43,13 @@ export function Navigation() {
         <Image src="/logo.png" alt="PalStakes" width={50} height={50}/>
         PalStakes
       </Link>
-      <nav className="hidden md:flex gap-6">
+      <nav className="hidden md:flex gap-6 items-center">
         {routes.map((route) => (
           <Link
             key={route.href}
             href={route.href}
             className={cn(
-              "text-sm font-medium transition-colors hover:text-primary",
+              "text-md font-medium transition-colors hover:text-primary",
               pathname === route.href
                 ? "text-black dark:text-white"
                 : "text-muted-foreground"
@@ -54,6 +58,7 @@ export function Navigation() {
             {route.label}
           </Link>
         ))}
+        <WalletMultiButton />
       </nav>
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild className="md:hidden">
@@ -79,6 +84,7 @@ export function Navigation() {
                 {route.label}
               </Link>
             ))}
+            <WalletMultiButton />
           </nav>
         </SheetContent>
       </Sheet>
